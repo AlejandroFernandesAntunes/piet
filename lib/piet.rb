@@ -27,10 +27,7 @@ module Piet
     end
 
     def optimize_png(path, opts)
-      level = (0..7).include?(opts[:level]) ? opts[:level] : 7
-      vo = opts[:verbose] ? "-v" : "-quiet"
-      path.gsub!(/([\(\)\[\]\{\}\*\?\\])/, '\\\\\1')
-      `#{command_path("optipng")} -o#{level} #{opts[:command_options]} #{vo} #{path}`
+      pngquant(path)
     end
 
     def optimize_jpg(path, opts)
